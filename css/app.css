@@ -1,0 +1,23 @@
+.logForm {
+  margin-top: 30%; }
+
+.btn-wrapper {
+  padding: 0.5rem 1rem; }
+
+body {
+  background-image: url("../imgs/grey_wash_wall.png");
+  background-repeat: repeat; }
+
+.table-wrapper {
+  text-align: center;
+  margin-top: 8%; }
+
+.btn-wrapper {
+  padding: 0; }
+  .btn-wrapper .btn-group {
+    display: flex;
+    flex-direction: row; }
+    .btn-wrapper .btn-group .btn {
+      width: 100%; }
+
+/*# sourceMappingURL=app.css.map */
