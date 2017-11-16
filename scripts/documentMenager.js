@@ -1,3 +1,4 @@
+/* ################  Dotyczy Administratora #################*/
 var arrayAll = [];
 var arrayDone =[];
 var arrayToDo = [];
@@ -8,13 +9,13 @@ function addDocuments(id, status, format, user){
 }
 
 addDocuments("a1233","gotowe","A4","Adam Kowalski");
-addDocuments("b1234","gotowe","A3","Adam Kowaski");
-addDocuments("sd32s","oczekujące","A0","");
+addDocuments("b1234","gotowe","A3","Adam Kowalski");
+addDocuments("sd32s","oczekujące","A0","Adam Kowalski");
 addDocuments("sd3254","gotowe","A1","Jan Nowak");
 addDocuments("4432s","gotowe","A2","Aleksandra Kwiatkowska");
-addDocuments("z4ds34","oczekujące","A0","");
-addDocuments("av23","oczekujące","A0","");
-addDocuments("b5432","gotowe","A0"," Aleksandra Nowak");
+addDocuments("z4ds34","oczekujące","A0","Aleksandra Kwiatkowska");
+addDocuments("av23","oczekujące","A0","Adam Kowalski");
+addDocuments("b5432","gotowe","A0"," Aleksandra Kwiatkowska");
 
 
 function createTable(arr){
@@ -28,7 +29,7 @@ function createTable(arr){
     }
 }
 
-createTable(arrayAll);
+//createTable(arrayAll);
 
 function deleteContent(){
     var table = document.getElementById("myTable");
@@ -101,7 +102,79 @@ function addDoc(){
     showAll();
     
 }
+/*##################### Dotyczy Uzytkownika ################################*/
+var arrAllUser = [];
+var arrDoneUser = [];
+var arrToDoUser = [];
+var login = localStorage.getItem('log');
+var password = localStorage.getItem('pass');
+login = login.charAt(0).toUpperCase() + login.substr(1);
+password= password.charAt(0).toUpperCase() + password.substr(1);
+var user = login + " " + password;
 
+function allUser(){
+    arrAllUser = [];
+    for(var i = 0; i< arrayAll.length; i++){
+        if(arrayAll[i][3]===user){
+            arrAllUser.push(arrayAll[i]);
+        }
+    }
+}
+
+function showAllUser(){
+    allUser();
+    deleteContent();
+    createTable(arrAllUser);
+}
+
+function findDoneUser(){
+    arrDoneUser = [];
+    allUser();
+    for(var j =0; j< arrAllUser.length; j++){
+        if((arrAllUser[j][1])=== "gotowe"){
+           arrDoneUser.push(arrAllUser[j]);
+        }
+    }
+}
+
+function showDoneUser(){
+    deleteContent();
+    findDoneUser();
+    createTable(arrDoneUser);
+}
+
+function findToDoUser(){
+    arrToDoUser = [];
+    allUser();
+    for(var k =0; k< arrAllUser.length; k++){
+        if((arrAllUser[k][1])=== "oczekujące"){
+           arrToDoUser.push(arrAllUser[k]);
+        }
+    }
+}
+
+function showToDoUser(){
+    deleteContent();
+    findToDoUser();
+    createTable(arrToDoUser);
+}
+
+function asDoneUser(){
+    var id = document.getElementById("IdUser").value;
+    var flag = false;
+    allUser();
+    for(var l =0; l< arrAllUser.length; l++){
+        if(arrAllUser[l][0] === id){
+            arrAllUser[l][1] = "gotowe";
+            flag= true;
+            break;
+        }
+    }
+    if(flag === false){
+        alert("Nie ma takiego id!")
+    }
+    showDoneUser();
+}
 
 //Resetowanie wartosci pol textowych
 $('#myModal').on('hidden.bs.modal', function () {
