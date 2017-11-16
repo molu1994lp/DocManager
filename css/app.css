@@ -2,7 +2,13 @@
   margin-top: 30%; }
 
 .btn-wrapper {
-  padding: 0.5rem 1rem; }
+  padding: 0.5rem 1rem !important; }
+  .btn-wrapper #submit {
+    padding: 0.5rem 13.8rem; }
+
+.label {
+  color: white;
+  font-size: 2rem; }
 
 body {
   background-image: url("../imgs/grey_wash_wall.png");
